@@ -1,0 +1,46 @@
+$font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+$space-unit: 4px;
+
+@function sp($n) {
+    @return $n * $space-unit;
+}
+@function spb($n) {
+    @return ($n * $space-unit) - 1;
+}
+
+$section: (
+    default: sp(20),
+    xl: sp(14),
+    md: sp(10)
+);
+
+$row: (
+    default: sp(10),
+    xl: sp(8),
+    md: sp(6)
+);
+
+$types: (
+    h1: (family: $font-family-base, weight: 700, size: 56px, lh: 100%, ls: -0.02em),
+    h1-t: (family: $font-family-base, weight: 700, size: 40px, lh: 100%, ls: -0.02em),
+    h1-m: (family: $font-family-base, weight: 700, size: 24px, lh: 133%, ls: -0.02em),
+    h2: (family: $font-family-base, weight: 600, size: 36px, lh: 133%),
+    h2-t: (family: $font-family-base, weight: 600, size: 32px, lh: 125%),
+    h2-m: (family: $font-family-base, weight: 600, size: 20px, lh: 120%),
+    h3: (family: $font-family-base, weight: 600, size: 28px, lh: 114%),
+    h3-t: (family: $font-family-base, weight: 600, size: 24px, lh: 117%),
+    h3-m: (family: $font-family-base, weight: 600, size: 18px, lh: 111%),
+    h4: (family: $font-family-base, weight: 600, size: 24px, lh: 117%),
+    h4-t: (family: $font-family-base, weight: 600, size: 20px, lh: 120%),
+    h4-m: (family: $font-family-base, weight: 600, size: 16px, lh: 150%),
+    h5: (family: $font-family-base, weight: 600, size: 20px, lh: 120%),
+    h5-t: (family: $font-family-base, weight: 600, size: 18px, lh: 133%),
+    h5-m: (family: $font-family-base, weight: 600, size: 14px, lh: 143%),
+    h6: (family: $font-family-base, weight: 600, size: 16px, lh: 150%),
+    h6-t: (family: $font-family-base, weight: 600, size: 16px, lh: 150%),
+    p1: (family: $font-family-base, weight: 500, size: 16px, lh: 150%),
+    p1-m: (family: $font-family-base, weight: 500, size: 16px, lh: 137%),
+    p2: (family: $font-family-base, weight: 500, size: 14px, lh: 140%),
+    p3: (family: $font-family-base, weight: 400, size: 12px, lh: 117%)
+);

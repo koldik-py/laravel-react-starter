@@ -1,27 +1,7 @@
-* {
-    box-sizing: border-box;
-}
+@use 'base/reset';
+@use 'base/fonts';
+@use 'base/global';
 
-body {
-    margin: 0;
-    font-family: Inter, system-ui, sans-serif;
-    background: #f4f5f7;
-    color: #111827;
-}
 
-.app {
-    min-height: 100vh;
 
-    &__header {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        padding: 0 32px;
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    &__main {
-        padding: 32px;
-    }
-}
+@layer reset, fonts, global;

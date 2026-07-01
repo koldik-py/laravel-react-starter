@@ -1,0 +1,115 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+@use 'variables' as *;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == us {
+    @media screen and (max-width: 359px) { @content; }
+  } @else if $breakpoint == xs {
+    @media screen and (max-width: 425px) { @content; }
+  } @else if $breakpoint == sm {
+    @media screen and (max-width: 576px) { @content; }
+  } @else if $breakpoint == md {
+    @media screen and (max-width: 768px) { @content; }
+  } @else if $breakpoint == lg {
+    @media screen and (max-width: 992px) { @content; }
+  } @else if $breakpoint == xl {
+    @media screen and (max-width: 1200px) { @content; }
+  } @else if $breakpoint == xxl {
+    @media screen and (max-width: 1448px) { @content; }
+  } @else {
+    @media screen and (max-width: $breakpoint) { @content; }
+  }
+}
+
+@mixin responsive-section-margin($map) {
+    margin-top: map-get($map, default);
+
+    @if map-has-key($map, xl) {
+        @include respond(xl) {
+            margin-top: map-get($map, xl);
+        }
+    }
+
+    @if map-has-key($map, md) {
+        @include respond(md) {
+            margin-top: map-get($map, md);
+        }
+    }
+}
+
+// Чёткое расположение N элементов в списке
+// $count  - количество колонок
+// $gap    - gap между колонками (например 20px)
+// $respond - брейкпоинт (например 'md'), опционально
+// $width  - ширина на брейкпоинте (например 100% или calc(...)), опционально
+@mixin grid-col($count, $gap, $respond: null, $width: null) {
+    // базовая ширина колонки для N элементов
+    width: calc((100% - (#{$gap} * (#{$count} - 1))) / #{$count});
+
+    // адаптивная ширина
+    @if $respond != null and $width != null {
+        @include respond($respond) {
+            width: $width;
+        }
+    }
+}
+
+@mixin trs($props...) {
+  $list: ();
+  $time: 0.4s;
+  $ease: ease;
+
+  @each $p in $props {
+    $list: list.append($list, string.unquote("#{$p} #{$time} #{$ease}"), comma);
+  }
+
+  transition: $list;
+}
+
+@mixin line-hidden($line) {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@mixin font($key) {
+    $t: map.get($types, $key);
+
+    font-family: map.get($t, family);
+    font-weight: map.get($t, weight);
+    font-size: map.get($t, size);
+    line-height: map.get($t, lh);
+
+    @if map.has-key($t, ls) {
+        letter-spacing: map.get($t, ls);
+    }
+    @if map.has-key($t, tt) {
+        text-transform: map.get($t, tt);
+    }
+    @if map.has-key($t, color) {
+        color: map.get($t, color);
+    }
+}
+
+@mixin title() {
+    @include font(h2);
+    @include respond(lg) {
+        @include font(h2-t);
+    }
+    @include respond(md) {
+        @include font(h1-m);
+    }
+}
+
+@mixin h1() {
+    @include font(h1);
+    @include respond(xl) {
+        @include font(h1-t);
+    }
+    @include respond(md) {
+        @include font(h1-m);
+    }
+}

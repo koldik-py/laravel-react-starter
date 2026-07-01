@@ -1,0 +1,28 @@
+@use '~/scss/utils' as *;
+@layer global {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scrollbar-gutter: stable;
+    }
+
+    @supports not (scrollbar-gutter: stable) {
+        html {
+            overflow-y: scroll; /* всегда есть полоса */
+        }
+    }
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        font-family: $font-family-base;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100dvh;
+    }
+}
